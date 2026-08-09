@@ -1,0 +1,142 @@
+[
+  {
+    "id": "return-policy",
+    "title": "Return Policy",
+    "category": "returns",
+    "content": "Our demo store accepts return requests within 7 days of delivery for eligible hardware products. The product must be returned in its original condition with all original accessories, packaging, and invoices intact. Opened software licenses or physically damaged items are excluded from returns.",
+    "keywords": ["return", "return policy", "7 days", "item return", "send back", "return item", "returns"]
+  },
+  {
+    "id": "refund-policy",
+    "title": "Refund Policy",
+    "category": "refunds",
+    "content": "Approved refunds are processed within 5–7 business days once the returned product passes our inspection check. Refunds are automatically credited back to the original payment method (Credit/Debit card, UPI, or Net Banking). For Cash on Delivery orders, refunds are credited via direct NEFT bank transfer.",
+    "keywords": ["refund", "money back", "refund timing", "refund status", "credit back", "refund policy"]
+  },
+  {
+    "id": "exchange-policy",
+    "title": "Exchange Policy",
+    "category": "exchanges",
+    "content": "We offer a 7-day direct product replacement / exchange in case of hardware defects on arrival or if an incorrect model was received. Once our support team verifies the issue, a replacement unit is dispatched at no extra shipping cost.",
+    "keywords": ["exchange", "replace", "replacement", "swap", "exchange policy", "defect on arrival"]
+  },
+  {
+    "id": "warranty-policy",
+    "title": "Manufacturer Warranty Policy",
+    "category": "warranty",
+    "content": "All laptops in our catalog come with a standard 1-Year Official Manufacturer Warranty (HP, Lenovo, Dell, ASUS, Acer, Apple). Warranty covers internal hardware defects and manufacturing faults. Customers can claim warranty service directly at any authorized brand service center nationwide using their official invoice.",
+    "keywords": ["warranty", "guarantee", "1 year warranty", "service center", "repair", "warranty coverage", "hardware fault"]
+  },
+  {
+    "id": "shipping-delivery-policy",
+    "title": "Shipping and Delivery Timelines",
+    "category": "shipping",
+    "content": "Standard doorstep delivery across India takes 3 to 7 business days depending on customer pincode location. Orders in metro cities typically arrive within 3–4 days. We provide end-to-end tracked courier dispatch with real-time SMS and WhatsApp delivery notifications.",
+    "keywords": ["shipping", "delivery", "delivery time", "how long", "dispatch", "courier", "arrival", "pincode"]
+  },
+  {
+    "id": "payment-methods",
+    "title": "Accepted Payment Methods",
+    "category": "payment",
+    "content": "We support 100% secure payment methods including UPI (Google Pay, PhonePe, Paytm), all major Credit/Debit cards (Visa, MasterCard, RuPay), Net Banking across 50+ banks, and Cash on Delivery (COD) for orders up to ₹50,000.",
+    "keywords": ["payment", "payment methods", "how to pay", "upi", "card", "credit card", "debit card", "net banking"]
+  },
+  {
+    "id": "cod-policy",
+    "title": "Cash on Delivery (COD) Availability",
+    "category": "payment",
+    "content": "Cash on Delivery (COD) is available for eligible laptop orders up to ₹50,000 across serviceable pincodes. For orders exceeding ₹50,000, secure online prepaid checkout via UPI, Cards, or EMI is required for security and insurance.",
+    "keywords": ["cod", "cash on delivery", "pay on delivery", "cash payment"]
+  },
+  {
+    "id": "emi-options",
+    "title": "No-Cost and Standard EMI Availability",
+    "category": "payment",
+    "content": "Yes! We offer flexible No-Cost EMI options for 3 and 6 months tenures on major credit cards (HDFC, ICICI, SBI, Axis, Kotak). Standard low-interest EMI plans are also available for 9, 12, 18, and 24 months through credit cards and select debit cards at checkout.",
+    "keywords": ["emi", "no cost emi", "installments", "monthly payment", "easy installments", "credit card emi", "can i pay with emi"]
+  },
+  {
+    "id": "order-cancellation",
+    "title": "Order Cancellation Policy",
+    "category": "cancellation",
+    "content": "Orders can be cancelled free of charge at any time before shipment dispatch from our warehouse. Once dispatched, cancellation is handled as a standard return upon delivery. Instant 100% refund is initiated for pre-dispatch cancellations.",
+    "keywords": ["cancel", "cancellation", "cancel order", "stop delivery", "cancel policy"]
+  },
+  {
+    "id": "damaged-product-policy",
+    "title": "Damaged in Transit Policy",
+    "category": "support",
+    "content": "If you receive a package that appears damaged or tampered with during shipping, please notify our customer support team via WhatsApp or email within 48 hours of delivery along with unboxing photos/video. We will arrange a priority free replacement.",
+    "keywords": ["damaged", "broken", "transit damage", "tampered box", "damaged product"]
+  },
+  {
+    "id": "wrong-product-policy",
+    "title": "Wrong Product Received Resolution",
+    "category": "support",
+    "content": "In the rare event that an incorrect item or specification is delivered, contact us within 48 hours. We arrange an immediate reverse pickup and expedite dispatch of the correct product at zero additional charge.",
+    "keywords": ["wrong item", "wrong product", "incorrect model", "wrong laptop"]
+  },
+  {
+    "id": "invoice-gst-policy",
+    "title": "Tax Invoice & GST Input Credit Policy",
+    "category": "billing",
+    "content": "Every purchase includes an official GST-compliant tax invoice sent automatically to your registered email and WhatsApp. Business buyers can enter their company GSTIN during checkout to claim 18% GST input tax credit.",
+    "keywords": ["invoice", "gst", "tax invoice", "business invoice", "gst input credit", "bill"]
+  },
+  {
+    "id": "customer-support-hours",
+    "title": "Customer Support Availability",
+    "category": "support",
+    "content": "Our Sales & Support team is available 6 days a week (Monday to Saturday from 9:00 AM to 8:00 PM IST) via WhatsApp Chat and phone support. Our AI Sales Assistant remains active 24/7 to answer product inquiries and recommendations.",
+    "keywords": ["support", "contact", "customer care", "help line", "working hours", "phone support", "contact us"]
+  },
+  {
+    "id": "laptop-warranty-extension",
+    "title": "Extended Warranty & Accidental Damage Protection",
+    "category": "warranty",
+    "content": "Customers can purchase official brand extended warranty packages (up to 2 or 3 additional years) and Accidental Damage Protection (ADP) plans either during laptop purchase or within 30 days of registration on the manufacturer portal.",
+    "keywords": ["extended warranty", "warranty extension", "adp", "accidental damage protection", "extra warranty"]
+  },
+  {
+    "id": "setup-assistance",
+    "title": "Installation and OS Setup Guidance",
+    "category": "services",
+    "content": "All Windows and macOS laptops come genuine and pre-activated with factory OS. We provide free remote setup guidance over WhatsApp/video call for initial Windows activation, Microsoft Office setup, developer tool installation (VS Code, Git, Docker, Node.js), and data migration.",
+    "keywords": ["setup", "installation", "os setup", "windows activation", "help setting up", "remote assistance"]
+  },
+  {
+    "id": "product-availability-stock",
+    "title": "Inventory and Stock Availability Policy",
+    "category": "inventory",
+    "content": "Products displayed with 'in_stock' status in our catalog are readily available in our fulfillment warehouses and dispatched within 24 hours of order confirmation. Out of stock items can be reserved on request.",
+    "keywords": ["stock", "availability", "in stock", "ready to ship", "units available"]
+  },
+  {
+    "id": "price-match-policy",
+    "title": "Demo Price and Quotation Policy",
+    "category": "pricing",
+    "content": "Prices displayed in our catalog are transparent and all-inclusive of standard GST taxes. For bulk corporate purchases (5+ units) or educational institutions, custom commercial quotations and volume discounts are available on request.",
+    "keywords": ["price", "pricing policy", "bulk discount", "corporate discount", "quotes", "taxes"]
+  },
+  {
+    "id": "recommendation-policy",
+    "title": "Product Recommendation Guidelines",
+    "category": "sales",
+    "content": "Our sales team recommends laptops tailored to specific user profiles: 16GB RAM models for software engineering / coding; RTX dedicated GPU models for gaming & AI/ML; lightweight 14-inch models for students and travel; and Intel Core i7 / Ryzen 7 for high-performance multitasking.",
+    "keywords": ["recommendation", "which is best", "how you recommend", "buying guide"]
+  },
+  {
+    "id": "student-discount-policy",
+    "title": "Student Discount Policy",
+    "category": "discounts",
+    "content": "Verified students and educators are eligible for an additional 5% educational discount on select student and coding laptop models with a valid college/university ID card during checkout.",
+    "keywords": ["student discount", "college discount", "education discount", "student offer"]
+  },
+  {
+    "id": "bulk-corporate-orders",
+    "title": "Bulk Business and Team Purchases",
+    "category": "business",
+    "content": "We support corporate IT procurement and team purchases for startup developer fleets. Bulk orders of 5+ laptops receive dedicated account manager support, custom OS image provisioning, and consolidated corporate billing.",
+    "keywords": ["bulk", "corporate purchase", "team laptops", "company order", "5 laptops", "office fleet"]
+  }
+]
