@@ -1,0 +1,117 @@
+{
+  "cust_1": [
+    {
+      "id": "msg_1_1",
+      "sender": "customer",
+      "text": "Hello! I am looking for custom web development services.",
+      "timestamp": "10:38 AM",
+      "status": "read"
+    },
+    {
+      "id": "msg_1_2",
+      "sender": "ai",
+      "text": "Hi Rahul! Welcome to TechWorld. 👋 I'm your AI Sales Assistant. We specialize in high-performance React and Node.js custom web development. What kind of project are you planning?",
+      "timestamp": "10:39 AM",
+      "status": "read"
+    },
+    {
+      "id": "msg_1_3",
+      "sender": "customer",
+      "text": "Hey, I had a question about the pricing plans.",
+      "timestamp": "10:42 AM",
+      "status": "delivered"
+    }
+  ],
+  "cust_2": [
+    {
+      "id": "msg_2_1",
+      "sender": "customer",
+      "text": "Do you offer mobile app development as well?",
+      "timestamp": "Yesterday, 8:40 PM",
+      "status": "read"
+    },
+    {
+      "id": "msg_2_2",
+      "sender": "ai",
+      "text": "Yes, Priya! We build cross-platform mobile apps using React Native. Would you like to see some of our recent case studies?",
+      "timestamp": "Yesterday, 8:42 PM",
+      "status": "read"
+    },
+    {
+      "id": "msg_2_3",
+      "sender": "customer",
+      "text": "Can we schedule a product demo for tomorrow?",
+      "timestamp": "Yesterday, 8:45 PM",
+      "status": "read"
+    }
+  ],
+  "cust_3": [
+    {
+      "id": "msg_3_1",
+      "sender": "customer",
+      "text": "Hi, I heard about your AI integrations. Can you explain your services?",
+      "timestamp": "2 days ago",
+      "status": "read"
+    },
+    {
+      "id": "msg_3_2",
+      "sender": "ai",
+      "text": "Hello Aman! We integrate LLMs (like Gemini AI) into corporate workflows to automate support, sales, and analytics. It reduces support costs by up to 40%!",
+      "timestamp": "2 days ago",
+      "status": "read"
+    },
+    {
+      "id": "msg_3_3",
+      "sender": "customer",
+      "text": "Perfect, let me check with my team.",
+      "timestamp": "2 days ago",
+      "status": "read"
+    }
+  ],
+  "cust_4": [
+    {
+      "id": "msg_4_1",
+      "sender": "customer",
+      "text": "Hi, do you have any software development discounts for student startups?",
+      "timestamp": "09:10 AM",
+      "status": "read"
+    },
+    {
+      "id": "msg_4_2",
+      "sender": "ai",
+      "text": "Hello Neha! Yes, TechWorld supports student founders! We offer up to a 30% discount on initial MVP development for verified college startups.",
+      "timestamp": "09:12 AM",
+      "status": "read"
+    },
+    {
+      "id": "msg_4_3",
+      "sender": "customer",
+      "text": "Is there any college discount available?",
+      "timestamp": "09:15 AM",
+      "status": "read"
+    }
+  ],
+  "cust_5": [
+    {
+      "id": "msg_5_1",
+      "sender": "customer",
+      "text": "Hello, is this TechWorld support?",
+      "timestamp": "3 days ago",
+      "status": "read"
+    },
+    {
+      "id": "msg_5_2",
+      "sender": "ai",
+      "text": "Hi John! Yes, this is the AI Sales Assistant. How can I help you discover our software products today?",
+      "timestamp": "3 days ago",
+      "status": "read"
+    },
+    {
+      "id": "msg_5_3",
+      "sender": "customer",
+      "text": "I will get back to you by next week.",
+      "timestamp": "3 days ago",
+      "status": "read"
+    }
+  ]
+}
