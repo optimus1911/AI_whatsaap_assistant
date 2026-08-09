@@ -27,12 +27,12 @@ function assert(condition, message, details = '') {
 
 async function runConversationalRoutingTests() {
   console.log('\n================================================================');
-  console.log('🧪 RUNNING CONVERSATIONAL INTENT ROUTING VERIFICATION');
+  console.log('🧪 RUNNING COMPREHENSIVE CONVERSATIONAL INTENT ROUTING VERIFICATION');
   console.log('================================================================\n');
 
-  // Test 1: GREETING intents
-  const greetings = ['hi', 'hello', 'hey', 'hii', 'hiii', 'helo', 'good morning', 'good afternoon', 'good evening', 'namaste'];
+  // Case 1 & 2: GREETING intents ("hi", "hello", "hey", etc.)
   console.log('--- 1. Testing GREETING Inputs ---');
+  const greetings = ['hi', 'hello', 'hey', 'hii', 'hiii', 'helo', 'good morning', 'good afternoon', 'good evening', 'namaste'];
   for (const text of greetings) {
     const intentRes = detectIntentAndRequirements(text);
     assert(
@@ -51,7 +51,8 @@ async function runConversationalRoutingTests() {
     );
   }
 
-  // Test 2: CAPABILITY intents
+  // Case 3 & 4: CAPABILITY intents ("what can you do", "who are you", "what do you do", etc.)
+  console.log('\n--- 2. Testing CAPABILITY Inputs ---');
   const capabilities = [
     'what can you do',
     'what do you do',
@@ -61,12 +62,11 @@ async function runConversationalRoutingTests() {
     'what can you help me with',
     'what is this'
   ];
-  console.log('\n--- 2. Testing CAPABILITY Inputs ---');
   for (const text of capabilities) {
     const intentRes = detectIntentAndRequirements(text);
     assert(
       intentRes.intent === 'CAPABILITY' && intentRes.searchAllowed === false && intentRes.isDirectReply === true,
-      `detectIntentAndRequirements("${text}") -> CAPABILITY (isDirectReply=true, searchAllowed=false)`,
+      `detectIntentAndRequirements("${text}") -> CAPABILITY (NOT CLARIFICATION, searchAllowed=false)`,
       `Got intent=${intentRes.intent}, searchAllowed=${intentRes.searchAllowed}, isDirectReply=${intentRes.isDirectReply}`
     );
 
@@ -80,9 +80,9 @@ async function runConversationalRoutingTests() {
     );
   }
 
-  // Test 3: THANKS intents
-  const thanksList = ['thanks', 'thank you', 'thanks a lot', 'thankyou', 'shukriya', 'dhanyawad'];
+  // Case 5 & 6: THANKS intents ("thanks", "thank you", etc.)
   console.log('\n--- 3. Testing THANKS Inputs ---');
+  const thanksList = ['thanks', 'thank you', 'thanks a lot', 'thankyou', 'shukriya', 'dhanyawad'];
   for (const text of thanksList) {
     const intentRes = detectIntentAndRequirements(text);
     assert(
@@ -100,9 +100,9 @@ async function runConversationalRoutingTests() {
     );
   }
 
-  // Test 4: GOODBYE intents
-  const goodbyes = ['bye', 'goodbye', 'see you', 'see you later', 'good night'];
+  // Case 7: GOODBYE intents ("bye", "goodbye", etc.)
   console.log('\n--- 4. Testing GOODBYE Inputs ---');
+  const goodbyes = ['bye', 'goodbye', 'see you', 'see you later', 'good night'];
   for (const text of goodbyes) {
     const intentRes = detectIntentAndRequirements(text);
     assert(
@@ -120,9 +120,9 @@ async function runConversationalRoutingTests() {
     );
   }
 
-  // Test 5: CASUAL_CONVERSATION intents
-  const casuals = ['ok', 'okay', 'great', 'nice', 'cool', 'alright', 'got it', 'understood'];
+  // Case 8: CASUAL_CONVERSATION intents ("ok", "okay", "great", etc.)
   console.log('\n--- 5. Testing CASUAL_CONVERSATION Inputs ---');
+  const casuals = ['ok', 'okay', 'great', 'nice', 'cool', 'alright', 'got it', 'understood'];
   for (const text of casuals) {
     const intentRes = detectIntentAndRequirements(text);
     assert(
@@ -140,9 +140,15 @@ async function runConversationalRoutingTests() {
     );
   }
 
-  // Test 6: Verify Product Search is STILL allowed when explicit search query is given
-  console.log('\n--- 6. Testing Explicit Product Search Inputs ---');
-  const searchQueries = ['show laptops under 60000', 'Dell laptop with 16GB RAM', 'ASUS gaming laptop under 80000'];
+  // Case 9: Explicit Product Search remains intact
+  console.log('\n--- 6. Testing Explicit Product Search Integrity ---');
+  const searchQueries = [
+    'show me laptops under 50000',
+    'show laptops under 60000',
+    'Dell laptop with 16GB RAM',
+    'ASUS gaming laptop under 80000',
+    'thanks, show me laptops under 50000'
+  ];
   for (const text of searchQueries) {
     const intentRes = detectIntentAndRequirements(text);
     assert(
@@ -151,6 +157,35 @@ async function runConversationalRoutingTests() {
       `Got intent=${intentRes.intent}, searchAllowed=${intentRes.searchAllowed}`
     );
   }
+
+  // Case 10: Conversation Reset remains intact
+  console.log('\n--- 7. Testing Conversation Reset Integrity ---');
+  const resetQueries = ['forget everything', 'start fresh', 'clear chat'];
+  for (const text of resetQueries) {
+    const intentRes = detectIntentAndRequirements(text);
+    assert(
+      intentRes.intent === 'CONVERSATION_RESET' && intentRes.searchAllowed === false && intentRes.isDirectReply === true,
+      `detectIntentAndRequirements("${text}") -> CONVERSATION_RESET (isDirectReply=true)`,
+      `Got intent=${intentRes.intent}, isDirectReply=${intentRes.isDirectReply}`
+    );
+  }
+
+  // Case 11 & 12: Gemini Quota / Error Resilience Simulation
+  console.log('\n--- 8. Testing Fallback / Gemini Error Resilience ---');
+  // Even when Gemini throws 429, 404, or is offline, direct conversational intents and fallback router return deterministic grounded responses
+  const offlineGreetings = await generateAiResponse('hi');
+  assert(
+    offlineGreetings.reply.includes('Welcome to AI WhatsApp Assistant') &&
+    !offlineGreetings.reply.includes("I couldn't find a laptop"),
+    'Simulated offline/fallback for "hi" still produces GREETING'
+  );
+
+  const offlineCapabilities = await generateAiResponse('what can you do');
+  assert(
+    offlineCapabilities.reply.includes('I can help you with product recommendations') &&
+    !offlineCapabilities.reply.includes("Could you clarify what you're looking for"),
+    'Simulated offline/fallback for "what can you do" still produces CAPABILITY'
+  );
 
   console.log('\n----------------------------------------------------------------');
   console.log(`Conversational Routing Summary: \x1b[32m${passed} Passed\x1b[0m, \x1b[31m${failed} Failed\x1b[0m`);

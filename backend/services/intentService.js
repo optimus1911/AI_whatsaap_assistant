@@ -263,14 +263,19 @@ export const detectIntentAndRequirements = (
 
   // ===== STAGE 0.9: CONVERSATIONAL INTENTS (CAPABILITY, GREETING, THANKS, GOODBYE, CASUAL_CONVERSATION) =====
   // 1. Capability Inquiries ("what can you do", "who are you", "how can you help me", "what is this", "what do you do")
-  if (/\b(what\s+can\s+you\s+do|what\s+do\s+you\s+do|who\s+are\s+you|how\s+can\s+you\s+help(?:\s+me)?|what\s+can\s+you\s+help\s+me\s+with|what\s+is\s+this|what\s+are\s+your\s+capabilities|help\s+me\s+understand\s+what\s+you\s+do)\b/i.test(text)) {
-    result.intent = 'CAPABILITY';
-    result.searchAllowed = false;
-    result.isDirectReply = true;
-    result.directReply = buildCapabilityResponse();
-    result.responseSource = 'DETERMINISTIC_FALLBACK';
-    _logIntentGate(result, text, normalization, explicitSignals, activeEntities, pendingAction, historicalRequirements);
-    return result;
+  if (
+    /\b(what\s+can\s+you\s+do|what\s+do\s+you\s+do|who\s+are\s+you|how\s+can\s+you\s+help(?:\s+me)?|what\s+can\s+you\s+help\s+me\s+with|what\s+are\s+your\s+capabilities|help\s+me\s+understand\s+what\s+you\s+do)\b/i.test(text) ||
+    /^what\s+is\s+this[\.!\?\s]*$/i.test(text)
+  ) {
+    if (!hasCurrentTurnProductEvidence(text)) {
+      result.intent = 'CAPABILITY';
+      result.searchAllowed = false;
+      result.isDirectReply = true;
+      result.directReply = buildCapabilityResponse();
+      result.responseSource = 'DETERMINISTIC_FALLBACK';
+      _logIntentGate(result, text, normalization, explicitSignals, activeEntities, pendingAction, historicalRequirements);
+      return result;
+    }
   }
 
   // 2. Greetings ("hi", "hello", "hey", "hii", "helo", "good morning", "good afternoon", "good evening", "namaste")
