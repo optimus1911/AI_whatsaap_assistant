@@ -30,7 +30,19 @@ By automating repetitive customer interactions, AI WhatsApp Assistant helps busi
 
 <!-- Add solution architecture diagram here -->
 
-<!-- Add project screenshots here -->
+## Screenshots
+
+### Dashboard
+
+![AI WhatsApp Assistant Dashboard](screenshots/dashboard.png)
+
+### WhatsApp Chat
+
+![AI WhatsApp Assistant Chat](screenshots/chat.png)
+
+### Customer Intelligence
+
+![AI WhatsApp Assistant Customer Intelligence](screenshots/customer-intelligence.png)
 
 <!-- Add workflow / user journey images here -->
 
