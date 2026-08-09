@@ -1,0 +1,51 @@
+{
+  "name": "whatsapp-sales-assistant-backend",
+  "version": "2.0.0",
+  "description": "Backend foundation for AI-powered WhatsApp Sales Assistant with RAG Catalog Engine",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "kill-port 5000 && nodemon server.js",
+    "seed:products": "node scripts/seedProducts.js",
+    "seed": "node seeder.js",
+    "test:rag": "node scripts/verify_rag_tests.js",
+    "test:products": "node scripts/test_product_search.js",
+    "test:knowledge": "node scripts/test_business_knowledge.js",
+    "test:intent": "node scripts/test_intent.js",
+    "test:conversation": "node scripts/test_conversation_flow.js",
+    "test:regression": "node scripts/test_regression_suite.js",
+    "test:prod-sim": "node scripts/test_production_simulation.js",
+    "test:followup": "node scripts/test_followup_actions.js",
+    "test:audit": "node scripts/test_master_production_audit.js",
+    "test:exact-flows": "node scripts/verify_exact_user_flows.js",
+    "test:compare-targets": "node scripts/test_explicit_comparison_targets.js",
+    "test:gemini": "node scripts/verify_rag_tests.js --gemini",
+    "test:deploy": "node scripts/test_deployment_health.js",
+    "test:lang": "node scripts/test_language_normalization.js",
+    "test:ambiguity": "node scripts/test_ambiguity_gate.js",
+    "test:reset": "node scripts/test_conversation_reset.js",
+    "test:conv-ai": "node scripts/test_conversational_intelligence.js",
+    "test:replay": "node scripts/test_master_production_replay.js",
+    "test:adversarial": "node scripts/test_conversational_adversarial.js",
+    "test:dialogue-audit": "node scripts/test_complete_production_audit.js",
+    "test:dialogue-flows": "node scripts/test_master_dialogue_flows.js",
+    "test:authoritative-matrix": "node scripts/test_authoritative_dialogue_matrix.js",
+    "test:production-dialogues": "node scripts/test_production_dialogues.js",
+    "test:hardened-matrix": "node scripts/test_hardened_dialogue_matrix.js",
+    "test:comprehensive-hardening": "node scripts/test_comprehensive_conversational_hardening.js",
+    "test:state-invariants": "node scripts/test_conversation_state_invariants.js"
+  },
+  "dependencies": {
+    "@google/genai": "^2.15.0",
+    "axios": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.3"
+  },
+  "devDependencies": {
+    "kill-port": "^2.0.1",
+    "nodemon": "^3.1.4"
+  }
+}
