@@ -35,7 +35,8 @@
     "test:hardened-matrix": "node backend/scripts/test_hardened_dialogue_matrix.js",
     "test:comprehensive-hardening": "node backend/scripts/test_comprehensive_conversational_hardening.js",
     "test:state-invariants": "node backend/scripts/test_conversation_state_invariants.js",
-    "test:conv-routing": "node backend/scripts/test_conversational_routing.js"
+    "test:conv-routing": "node backend/scripts/test_conversational_routing.js",
+    "test:branding": "node backend/scripts/test_branding_migration.js"
   },
   "dependencies": {
     "axios": "^1.19.0",

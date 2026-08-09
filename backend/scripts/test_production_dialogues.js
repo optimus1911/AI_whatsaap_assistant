@@ -41,7 +41,7 @@ async function runProductionDialogues() {
   {
     const r1 = detectIntentAndRequirements('hi', history, lastAssistantMsg);
     assert(r1.intent === 'GREETING' && r1.searchAllowed === false, 'Turn 1: "hi" -> GREETING (no search)');
-    lastAssistantMsg = 'Hello! Welcome to SalesPilot-AI. How can I assist you with your laptop shopping today?';
+    lastAssistantMsg = 'Hi! 👋 Welcome to AI WhatsApp Assistant. How can I help you today?';
     history += `CUSTOMER: "hi"\nASSISTANT: "${lastAssistantMsg}"\n`;
   }
 

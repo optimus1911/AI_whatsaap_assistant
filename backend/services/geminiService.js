@@ -96,8 +96,12 @@ export const sanitizeCustomerReply = (rawReply) => {
     }
   }
 
-  // Strip generic placeholders like [Customer Name] or [Company Name]
-  cleaned = cleaned.replace(/\[Customer Name\]/gi, '').replace(/\[Company Name\]/gi, 'SalesPilot');
+  // Strip generic placeholders and ensure branding integrity
+  cleaned = cleaned
+    .replace(/\[Customer Name\]/gi, '')
+    .replace(/\[Company Name\]/gi, 'AI WhatsApp Assistant')
+    .replace(/\bSalesPilot(?:\-|\s+)?AI\b/gi, 'AI WhatsApp Assistant')
+    .replace(/\bSalesPilot\b/gi, 'AI WhatsApp Assistant');
 
   return cleaned.trim();
 };
@@ -242,7 +246,7 @@ export const generateAiResponse = async (
   try {
     const ai = getAiClient();
 
-    const systemPrompt = `You are SalesPilot AI, a live sales assistant operating inside a WhatsApp CRM for a technology hardware business selling laptops (HP, Lenovo, Dell, ASUS, Acer, Apple).
+    const systemPrompt = `You are AI WhatsApp Assistant, a live sales assistant operating inside a WhatsApp CRM for a technology hardware business selling laptops (HP, Lenovo, Dell, ASUS, Acer, Apple).
 
 GROUND TRUTH RULES:
 1. CONVERSATION HISTORY is the source of truth for all customer statements, preferences, RAM/brand/use-case requests, and prior context.

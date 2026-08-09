@@ -28,7 +28,7 @@ export default function DashboardFooter({ lastUpdated }) {
       {/* Version & Sync Stamp */}
       <div className="flex items-center gap-3">
         <span className="bg-whatsapp-panel px-2.5 py-1 rounded-md border border-whatsapp-border/20 font-mono text-[10px] text-whatsapp-text">
-          SalesPilot-AI v1.2 (Hackathon Edition)
+          AI WhatsApp Assistant v2.0
         </span>
         {lastUpdated && (
           <span className="font-mono text-[10px] text-whatsapp-gray">

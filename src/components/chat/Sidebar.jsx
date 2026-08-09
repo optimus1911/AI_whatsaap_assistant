@@ -93,13 +93,13 @@ export default function Sidebar() {
         <div className="flex items-center space-x-3">
           {/* Brand Logo Avatar */}
           <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-whatsapp-teal to-whatsapp-green text-whatsapp-dark font-extrabold text-base shadow-md">
-            SP
+            AI
             <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-whatsapp-green rounded-full border-2 border-whatsapp-panel" />
           </div>
           
           <div className="leading-tight">
             <div className="flex items-center gap-1.5">
-              <h1 className="font-extrabold text-sm text-whatsapp-text">SalesPilot-AI</h1>
+              <h1 className="font-extrabold text-sm text-whatsapp-text">AI WhatsApp Assistant</h1>
               <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-whatsapp-teal/20 text-whatsapp-green border border-whatsapp-green/20">CRM</span>
             </div>
             <p className="text-[10px] text-whatsapp-gray flex items-center gap-1 mt-0.5">

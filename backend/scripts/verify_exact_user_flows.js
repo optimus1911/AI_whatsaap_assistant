@@ -53,7 +53,7 @@ function printFlowResult({
 
 async function runExactFlowVerification() {
   console.log('\n################################################################');
-  console.log('⚡ SALESPILOT-AI — 10 EXACT FLOWS VERIFICATION MATRIX');
+  console.log('⚡ AI WHATSAPP ASSISTANT — 10 EXACT FLOWS VERIFICATION MATRIX');
   console.log('################################################################');
 
   // Presented HP Products context

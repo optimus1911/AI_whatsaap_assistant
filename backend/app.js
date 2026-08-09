@@ -62,7 +62,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
   res.status(200).json({
     status: 'UP',
-    service: 'SalesPilot-AI CRM Backend (RAG Enabled)',
+    service: 'AI WhatsApp Assistant CRM Backend (RAG Enabled)',
     version: '2.0.0',
     timestamp: new Date(),
     environment: process.env.NODE_ENV || 'production',
@@ -83,7 +83,7 @@ app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'UP',
     timestamp: new Date(),
-    message: 'SalesPilot-AI backend with RAG Knowledge Engine is healthy and running.'
+    message: 'AI WhatsApp Assistant backend with RAG Knowledge Engine is healthy and running.'
   });
 });
 

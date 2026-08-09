@@ -28,7 +28,7 @@ function assert(condition, testName, details = '') {
 
 async function runComprehensiveRegressionSuite() {
   console.log('\n================================================================');
-  console.log('🛡️ RUNNING SALESPILOT-AI PRODUCTION RELIABILITY MATRIX (13 TESTS)');
+  console.log('🛡️ RUNNING AI WHATSAPP ASSISTANT PRODUCTION RELIABILITY MATRIX (13 TESTS)');
   console.log('⚡ (Verifying Grounded Deterministic Engine & Quota Protection)');
   console.log('================================================================\n');
 

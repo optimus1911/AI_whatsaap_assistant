@@ -28,7 +28,7 @@ function assert(condition, testName, details = '') {
 
 async function runMasterProductionAudit() {
   console.log('\n================================================================');
-  console.log('🏆 RUNNING SALESPILOT-AI MASTER PRODUCTION AUDIT & VERIFICATION');
+  console.log('🏆 RUNNING AI WHATSAPP ASSISTANT MASTER PRODUCTION AUDIT & VERIFICATION');
   console.log('⚡ (Full End-to-End Context Hardening, Fallback & Safety Audit)');
   console.log('================================================================\n');
 

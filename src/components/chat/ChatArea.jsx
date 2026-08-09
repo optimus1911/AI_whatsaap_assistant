@@ -97,7 +97,7 @@ export default function ChatArea() {
         <div className="w-16 h-16 rounded-full bg-whatsapp-panel border border-whatsapp-border/30 flex items-center justify-center text-whatsapp-gray mb-3">
           <IoChatbubblesOutline className="w-8 h-8 opacity-60 text-whatsapp-green" />
         </div>
-        <h2 className="text-base font-bold text-whatsapp-text mb-1">SalesPilot-AI CRM Workspace</h2>
+        <h2 className="text-base font-bold text-whatsapp-text mb-1">AI WhatsApp Assistant CRM Workspace</h2>
         <p className="text-xs text-whatsapp-gray max-w-sm">
           Select a customer from the left sidebar to inspect live WhatsApp messages and real-time AI conversation analysis.
         </p>
@@ -192,7 +192,7 @@ export default function ChatArea() {
                       <span className={`text-[10px] font-extrabold uppercase tracking-wider ${
                         isCustomer ? 'text-whatsapp-gray' : 'text-whatsapp-green flex items-center gap-1'
                       }`}>
-                        {isCustomer ? (customer.name || 'Customer') : '🤖 SalesPilot AI'}
+                        {isCustomer ? (customer.name || 'Customer') : '🤖 AI WhatsApp Assistant'}
                       </span>
                     </div>
 
@@ -237,7 +237,7 @@ export default function ChatArea() {
                     <div className="w-1.5 h-1.5 bg-whatsapp-green rounded-full animate-bounce" style={{ animationDelay: "300ms" }}></div>
                   </div>
                   <span className="text-[10px] text-whatsapp-green font-extrabold uppercase tracking-wider font-mono">
-                    SalesPilot Intelligence
+                    AI Assistant Intelligence
                   </span>
                 </div>
                 <span className="text-xs text-whatsapp-text font-medium transition-all duration-300">

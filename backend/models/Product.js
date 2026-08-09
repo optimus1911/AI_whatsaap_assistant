@@ -87,7 +87,7 @@ const productSchema = new mongoose.Schema(
     },
     source: {
       type: String,
-      default: 'Demo SalesPilot product catalog'
+      default: 'Demo AI WhatsApp Assistant product catalog'
     },
     // Optional embedding vector field for MongoDB Atlas Vector Search
     embedding: {

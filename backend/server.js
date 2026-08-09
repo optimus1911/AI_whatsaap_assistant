@@ -15,7 +15,7 @@ try {
 }
 
 process.env.APP_VERSION = appVersion;
-console.log(`[SalesPilot] Version: ${appVersion}`);
+console.log(`[AI-WA-Assistant] Version: ${appVersion}`);
 console.log("Gemini:", process.env.GEMINI_API_KEY ? "Loaded ✅" : "Missing ❌");
 console.log("Mongo :", process.env.MONGODB_URI ? "Loaded ✅" : "Missing ❌");
 console.log("WA Token:", process.env.WHATSAPP_ACCESS_TOKEN ? "Loaded ✅" : "Missing ❌");
@@ -24,7 +24,7 @@ const PORT = process.env.PORT || 5000;
 
 // === CRITICAL: Bind HTTP server FIRST so Render detects the open port ===
 const server = app.listen(PORT, '0.0.0.0', () => {
-  console.log(`[SERVER] SalesPilot-AI listening on port ${PORT} (0.0.0.0) [Version: ${appVersion}]`);
+  console.log(`[SERVER] AI WhatsApp Assistant listening on port ${PORT} (0.0.0.0) [Version: ${appVersion}]`);
 });
 
 // === THEN initialize async services (MongoDB, seed) — failures won't block the port ===
