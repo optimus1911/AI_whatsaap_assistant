@@ -34,7 +34,8 @@
     "test:production-dialogues": "node scripts/test_production_dialogues.js",
     "test:hardened-matrix": "node scripts/test_hardened_dialogue_matrix.js",
     "test:comprehensive-hardening": "node scripts/test_comprehensive_conversational_hardening.js",
-    "test:state-invariants": "node scripts/test_conversation_state_invariants.js"
+    "test:state-invariants": "node scripts/test_conversation_state_invariants.js",
+    "test:conv-routing": "node scripts/test_conversational_routing.js"
   },
   "dependencies": {
     "@google/genai": "^2.15.0",

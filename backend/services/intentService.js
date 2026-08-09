@@ -8,7 +8,15 @@ import {
   findProductInCatalog,
   canonicalBrand
 } from './conversationContextService.js';
-import { buildProductSelectionResponse, buildBrandClarificationResponse } from './deterministicResponseService.js';
+import {
+  buildProductSelectionResponse,
+  buildBrandClarificationResponse,
+  buildGreetingResponse,
+  buildCapabilityResponse,
+  buildThanksResponse,
+  buildGoodbyeResponse,
+  buildCasualResponse
+} from './deterministicResponseService.js';
 
 const CONFIRMATION_PATTERNS = /^(yes|yeah|yep|yup|sure|okay|ok|y|haan|ha|theek\s+hai|please\s+do|do\s+it|show\s+me|send\s+it|go\s+ahead|tell\s+me|show|definitely|absolutely|fine|why\s+not|that\s+sounds\s+good)[\.!\?]*$/i;
 const DENIAL_PATTERNS = /^(no|nope|nah|not\s+now|nevermind|don't|cancel|nahi|na|nahi\s+ye\s+nahi\s+chahiye|ye\s+nahi\s+chahiye)[\.!\?]*$/i;
@@ -247,7 +255,63 @@ export const detectIntentAndRequirements = (
     result.isClarification = true;
     result.searchAllowed = false;
     result.clarificationReason = 'Security / Prompt Injection Guard';
-    result.clarificationMessage = "I am SalesPilot's shopping assistant. How can I help you find the right laptop or answer any store policy questions?";
+    result.clarificationMessage = "I am an AI sales assistant. How can I help you find the right products or answer any store policy questions?";
+    result.responseSource = 'DETERMINISTIC_FALLBACK';
+    _logIntentGate(result, text, normalization, explicitSignals, activeEntities, pendingAction, historicalRequirements);
+    return result;
+  }
+
+  // ===== STAGE 0.9: CONVERSATIONAL INTENTS (CAPABILITY, GREETING, THANKS, GOODBYE, CASUAL_CONVERSATION) =====
+  // 1. Capability Inquiries ("what can you do", "who are you", "how can you help me", "what is this", "what do you do")
+  if (/\b(what\s+can\s+you\s+do|what\s+do\s+you\s+do|who\s+are\s+you|how\s+can\s+you\s+help(?:\s+me)?|what\s+can\s+you\s+help\s+me\s+with|what\s+is\s+this|what\s+are\s+your\s+capabilities|help\s+me\s+understand\s+what\s+you\s+do)\b/i.test(text)) {
+    result.intent = 'CAPABILITY';
+    result.searchAllowed = false;
+    result.isDirectReply = true;
+    result.directReply = buildCapabilityResponse();
+    result.responseSource = 'DETERMINISTIC_FALLBACK';
+    _logIntentGate(result, text, normalization, explicitSignals, activeEntities, pendingAction, historicalRequirements);
+    return result;
+  }
+
+  // 2. Greetings ("hi", "hello", "hey", "hii", "helo", "good morning", "good afternoon", "good evening", "namaste")
+  if (/^(hi|hello|hey|hii+|helo|good\s+morning|good\s+afternoon|good\s+evening|greetings|namaste)[\.!\s]*$/i.test(text)) {
+    result.intent = 'GREETING';
+    result.searchAllowed = false;
+    result.isDirectReply = true;
+    result.directReply = buildGreetingResponse();
+    result.responseSource = 'DETERMINISTIC_FALLBACK';
+    _logIntentGate(result, text, normalization, explicitSignals, activeEntities, pendingAction, historicalRequirements);
+    return result;
+  }
+
+  // 3. Thanks / Gratitude ("thanks", "thank you", "thanks a lot", "thankyou", "shukriya", "dhanyawad")
+  if (/^(thanks|thank\s+you|thanks\s+a\s+lot|thankyou|many\s+thanks|shukriya|dhanyawad)[\.!\s]*$/i.test(text)) {
+    result.intent = 'THANKS';
+    result.searchAllowed = false;
+    result.isDirectReply = true;
+    result.directReply = buildThanksResponse();
+    result.responseSource = 'DETERMINISTIC_FALLBACK';
+    _logIntentGate(result, text, normalization, explicitSignals, activeEntities, pendingAction, historicalRequirements);
+    return result;
+  }
+
+  // 4. Goodbye / Farewell ("bye", "goodbye", "see you", "see you later", "good night")
+  if (/^(bye|goodbye|see\s+you|see\s+you\s+later|good\s+night|cya|take\s+care)[\.!\s]*$/i.test(text)) {
+    result.intent = 'GOODBYE';
+    result.searchAllowed = false;
+    result.isDirectReply = true;
+    result.directReply = buildGoodbyeResponse();
+    result.responseSource = 'DETERMINISTIC_FALLBACK';
+    _logIntentGate(result, text, normalization, explicitSignals, activeEntities, pendingAction, historicalRequirements);
+    return result;
+  }
+
+  // 5. Casual Conversation / Acknowledgements ("ok", "okay", "great", "nice", "cool", "alright", "got it", "understood")
+  if (/^(ok|okay|great|nice|cool|alright|got\s+it|understood|awesome|perfect|fine)[\.!\s]*$/i.test(text)) {
+    result.intent = 'CASUAL_CONVERSATION';
+    result.searchAllowed = false;
+    result.isDirectReply = true;
+    result.directReply = buildCasualResponse();
     result.responseSource = 'DETERMINISTIC_FALLBACK';
     _logIntentGate(result, text, normalization, explicitSignals, activeEntities, pendingAction, historicalRequirements);
     return result;

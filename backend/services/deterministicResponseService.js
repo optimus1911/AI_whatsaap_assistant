@@ -204,6 +204,48 @@ export const buildProductSelectionResponse = (product = null) => {
 };
 
 /**
+ * Builds a natural greeting response.
+ */
+export const buildGreetingResponse = () => {
+  return "Hi! 👋 Welcome to AI WhatsApp Assistant. How can I help you today?";
+};
+
+/**
+ * Builds a comprehensive capability description response.
+ */
+export const buildCapabilityResponse = () => {
+  return "I can help you with product recommendations, specifications, prices, availability, comparisons, warranty, returns, refunds, shipping, EMI and other sales-related questions. What would you like to know?";
+};
+
+/**
+ * Builds a grateful acknowledgement response.
+ */
+export const buildThanksResponse = () => {
+  return "You're welcome! 😊 Let me know if you'd like help with anything else.";
+};
+
+/**
+ * Builds a warm goodbye / farewell response.
+ */
+export const buildGoodbyeResponse = () => {
+  return "You're welcome! Have a great day. 👋";
+};
+
+/**
+ * Builds a casual conversation / acknowledgement response.
+ */
+export const buildCasualResponse = () => {
+  return "Sure! 👍 How can I help you?";
+};
+
+/**
+ * Builds a safe, helpful generic fallback response when no specific intent matches.
+ */
+export const buildSafeGenericFallback = () => {
+  return "I'm here to help you find the right products, check specifications, or answer any store policy questions. What would you like to explore?";
+};
+
+/**
  * Builds a contextual clarification response for standalone brand inquiries.
  */
 export const buildBrandClarificationResponse = (brand = '', activeProducts = []) => {
@@ -212,3 +254,4 @@ export const buildBrandClarificationResponse = (brand = '', activeProducts = [])
   }
   return `Sure! Are you looking for *${brand}* laptops? If so, tell me your preferred budget or key specifications (such as RAM or use case).`;
 };
+

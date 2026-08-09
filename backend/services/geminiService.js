@@ -15,7 +15,13 @@ import {
   buildProductCatalogResponse,
   buildBusinessPolicyResponse,
   buildProductComparisonResponse,
-  buildProductAvailabilityResponse
+  buildProductAvailabilityResponse,
+  buildGreetingResponse,
+  buildCapabilityResponse,
+  buildThanksResponse,
+  buildGoodbyeResponse,
+  buildCasualResponse,
+  buildSafeGenericFallback
 } from './deterministicResponseService.js';
 
 // Circuit breaker for Gemini API quota protection
@@ -160,19 +166,31 @@ export const generateAiResponse = async (
     geminiUsed: false
   };
 
-  // 2. High-Precision Short-Circuit for Direct Entity Replies (e.g. "which is cheaper?", Conversation Reset, or Product Selection)
+  // 2. High-Precision Short-Circuit for Direct Entity Replies (e.g. "which is cheaper?", Conversation Reset, GREETING, CAPABILITY, etc.)
   if (isDirectReply && directReply) {
     defaultResult.reply = directReply;
     const sourceTag = intent === 'CONVERSATION_RESET'
       ? 'DETERMINISTIC_FALLBACK'
       : intent === 'PRODUCT_SELECTION'
       ? 'PRODUCT_CONTEXT'
-      : 'PRODUCT_COMPARISON';
+      : intent === 'PRODUCT_COMPARISON'
+      ? 'PRODUCT_COMPARISON'
+      : 'DETERMINISTIC_FALLBACK';
     defaultResult.responseSource = sourceTag;
     defaultResult.summary = intent === 'CONVERSATION_RESET'
       ? 'Cleared previous conversation context.'
       : intent === 'PRODUCT_SELECTION'
       ? 'Customer selected a specific product option from active context.'
+      : intent === 'GREETING'
+      ? 'Customer greeted the assistant.'
+      : intent === 'CAPABILITY'
+      ? 'Customer asked for assistant capabilities.'
+      : intent === 'THANKS'
+      ? 'Customer expressed gratitude.'
+      : intent === 'GOODBYE'
+      ? 'Customer said goodbye.'
+      : intent === 'CASUAL_CONVERSATION'
+      ? 'Customer sent casual conversational message.'
       : 'Direct comparative evaluation from active product set.';
 
     console.log(`[RESP-TRACE] responseSource=${sourceTag} | directReply=true`);
@@ -366,14 +384,29 @@ function fallbackToDeterministicResponse(prompt, intent, requirements, rawProduc
   let replyText = '';
   let source = 'DETERMINISTIC_FALLBACK';
 
-  if (intent === 'HISTORICAL_QUERY') {
+  if (intent === 'GREETING') {
+    replyText = buildGreetingResponse();
+    source = 'DETERMINISTIC_FALLBACK';
+  } else if (intent === 'CAPABILITY') {
+    replyText = buildCapabilityResponse();
+    source = 'DETERMINISTIC_FALLBACK';
+  } else if (intent === 'THANKS') {
+    replyText = buildThanksResponse();
+    source = 'DETERMINISTIC_FALLBACK';
+  } else if (intent === 'GOODBYE') {
+    replyText = buildGoodbyeResponse();
+    source = 'DETERMINISTIC_FALLBACK';
+  } else if (intent === 'CASUAL_CONVERSATION') {
+    replyText = buildCasualResponse();
+    source = 'DETERMINISTIC_FALLBACK';
+  } else if (intent === 'HISTORICAL_QUERY') {
     replyText = buildMemoryResponse(requirements, prompt);
     source = 'MEMORY';
   } else if (intent === 'AVAILABILITY_QUERY') {
     replyText = buildProductAvailabilityResponse(rawProducts, requirements.mentionedModels);
     source = 'PRODUCT_RAG';
   } else if (intent === 'CLARIFICATION') {
-    replyText = defaultResult.clarificationMessage || "Could you clarify what you're looking for — a specific brand, price range, or laptop model?";
+    replyText = defaultResult.clarificationMessage || "Could you clarify what you're looking for — a specific brand, price range, or product model?";
     source = 'DETERMINISTIC_FALLBACK';
   } else if (intent === 'WARRANTY_QUERY') {
     replyText = buildBusinessPolicyResponse(rawKnowledge, intent, requirements.mentionedModels);
@@ -388,8 +421,11 @@ function fallbackToDeterministicResponse(prompt, intent, requirements, rawProduc
     const isConfirmation = intent === 'CONFIRMATION';
     replyText = buildProductCatalogResponse(rawProducts, requirements, isConfirmation);
     source = 'DETERMINISTIC_FALLBACK';
-  } else {
+  } else if (intent === 'PRODUCT_SEARCH' || requirements.brand || requirements.ram || requirements.maxPrice || requirements.useCase) {
     replyText = buildProductCatalogResponse([], requirements, false);
+    source = 'DETERMINISTIC_FALLBACK';
+  } else {
+    replyText = buildSafeGenericFallback();
     source = 'DETERMINISTIC_FALLBACK';
   }
 

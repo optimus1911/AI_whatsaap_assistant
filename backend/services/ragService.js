@@ -121,7 +121,19 @@ export const executeRagRetrieval = async (
   }
 
   // 3. Search Safety Gate & Product Queries
-  if (!isHistoricalQuery && intent !== 'GREETING' && intent !== 'DENIAL' && !isPolicyQuery && !isClarification) {
+  const nonProductSearchIntents = [
+    'GREETING',
+    'CAPABILITY',
+    'THANKS',
+    'GOODBYE',
+    'CASUAL_CONVERSATION',
+    'DENIAL',
+    'HISTORICAL_QUERY',
+    'CONVERSATION_RESET',
+    'CLARIFICATION'
+  ];
+
+  if (!isHistoricalQuery && !nonProductSearchIntents.includes(intent) && !isPolicyQuery && !isClarification) {
     // If intent is PRODUCT_SEARCH but search is NOT allowed by ambiguity gate, convert to CLARIFICATION
     if (intent === 'PRODUCT_SEARCH' && !intentData.searchAllowed) {
       console.log('[SAFETY-GATE] Blocked unauthorized PRODUCT_SEARCH with insufficient evidence. Converting to CLARIFICATION.');

@@ -335,6 +335,8 @@ export const buildConversationContext = (
     conversationAct = 'SECURITY_PROMPT_INJECTION';
   } else if (CONVERSATION_RESET_PATTERNS.test(normalizedText)) {
     conversationAct = 'CONVERSATION_RESET';
+  } else if (/\b(what\s+can\s+you\s+do|what\s+do\s+you\s+do|who\s+are\s+you|how\s+can\s+you\s+help(?:\s+me)?|what\s+can\s+you\s+help\s+me\s+with|what\s+is\s+this|what\s+are\s+your\s+capabilities)\b/i.test(normalizedText)) {
+    conversationAct = 'CAPABILITY';
   } else if (isPrimaryPolicyQuery(normalizedText)) {
     conversationAct = 'POLICY_REQUEST';
   } else if (CONVERSATIONAL_QUESTION_PATTERNS.some(p => p.test(normalizedText))) {
@@ -353,10 +355,14 @@ export const buildConversationContext = (
     conversationAct = 'QUESTION';
   } else if (/^(hp|dell|lenovo|asus|acer|apple|macbook)[\.!\?]*$/i.test(normalizedText.trim()) || /^what\s+about\s+(?:hp|dell|lenovo|asus|acer|apple)\??$/i.test(normalizedText.trim())) {
     conversationAct = 'AMBIGUOUS_REQUEST';
-  } else if (/^(thanks|thank\s+you|shukriya|dhanyawad)[\.!\?]*$/i.test(normalizedText)) {
+  } else if (/^(thanks|thank\s+you|thanks\s+a\s+lot|thankyou|many\s+thanks|shukriya|dhanyawad)[\.!\?]*$/i.test(normalizedText)) {
     conversationAct = 'ACKNOWLEDGEMENT';
-  } else if (/^(hi|hello|hey|good\s+morning|good\s+evening|namaste)[\.!\?]*$/i.test(normalizedText)) {
+  } else if (/^(bye|goodbye|see\s+you|see\s+you\s+later|good\s+night|cya|take\s+care)[\.!\?]*$/i.test(normalizedText)) {
+    conversationAct = 'GOODBYE';
+  } else if (/^(hi|hello|hey|hii+|helo|good\s+morning|good\s+afternoon|good\s+evening|namaste)[\.!\?]*$/i.test(normalizedText)) {
     conversationAct = 'GREETING';
+  } else if (/^(ok|okay|great|nice|cool|alright|got\s+it|understood|awesome|perfect|fine)[\.!\?]*$/i.test(normalizedText)) {
+    conversationAct = 'CASUAL_CONVERSATION';
   }
 
   if (conversationAct === 'CONVERSATION_RESET') {
