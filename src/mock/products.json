@@ -1,0 +1,50 @@
+[
+  {
+    "id": "prod_1",
+    "name": "SaaS CRM Platform",
+    "description": "All-in-one customer relationship management tool with automated pipeline tracking, lead scoring, and reports.",
+    "pricing": "$49/month (Basic) | $99/month (Professional)",
+    "features": [
+      "Automated lead classification",
+      "Real-time pipeline analytics",
+      "E-mail & WhatsApp notifications integration",
+      "Up to 10,000 active contacts"
+    ]
+  },
+  {
+    "id": "prod_2",
+    "name": "Custom Web App Development",
+    "description": "High-fidelity, performant, and secure full-stack custom web solutions tailored for business automation.",
+    "pricing": "Starting from $3,500 (Project-based)",
+    "features": [
+      "React/Next.js frontend design",
+      "Node.js & Express scalable backend APIs",
+      "Relational & non-relational database architectures (Postgres/MongoDB)",
+      "SEO optimized structures"
+    ]
+  },
+  {
+    "id": "prod_3",
+    "name": "AI Chatbot Integration Suite",
+    "description": "Incorporate LLM-driven assistants (like Gemini AI) directly into support channels (Web, WhatsApp, Slack).",
+    "pricing": "Starting from $1,200 (Integration fee) + API usage costs",
+    "features": [
+      "Custom system-prompt fine-tuning",
+      "Live support agent fallback handoff triggers",
+      "Multi-language natural language understanding",
+      "Semantic lookup databases (RAG)"
+    ]
+  },
+  {
+    "id": "prod_4",
+    "name": "Mobile App Development",
+    "description": "Native-performing Android and iOS applications built on a unified codebase.",
+    "pricing": "Starting from $5,000 (Project-based)",
+    "features": [
+      "React Native high-speed code architectures",
+      "App Store & Google Play distribution guidance",
+      "Offline sync storage capabilities",
+      "Push notification systems"
+    ]
+  }
+]
