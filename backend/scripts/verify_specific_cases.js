@@ -24,35 +24,72 @@ const testCases = [
 ];
 
 async function run() {
-  console.log('\n====================================================');
-  console.log('SPECIFIC 9-CASE VERIFICATION RUN');
-  console.log('====================================================\n');
+  console.log('\n========================================================================');
+  console.log('🧪 CONVERSATIONAL INTENT & CATALOG SAFETY VERIFICATION (9 CASES)');
+  console.log('========================================================================\n');
 
   let allPassed = true;
+  const results = [];
 
-  for (const tc of testCases) {
-    const intentRes = detectIntentAndRequirements(tc.text);
-    const aiRes = await generateAiResponse(tc.text);
+  for (let i = 0; i < testCases.length; i++) {
+    const tc = testCases[i];
+    
+    // Temporarily suppress verbose internal debug trace logs during turn execution
+    const originalLog = console.log;
+    const originalWarn = console.warn;
+    console.log = () => {};
+    console.warn = () => {};
+
+    let intentRes, aiRes;
+    try {
+      intentRes = detectIntentAndRequirements(tc.text);
+      aiRes = await generateAiResponse(tc.text);
+    } finally {
+      console.log = originalLog;
+      console.warn = originalWarn;
+    }
 
     const intentOk = intentRes.intent === tc.expectedIntent;
     const searchOk = intentRes.searchAllowed === tc.shouldSearch;
     const noCatalogLeak = !aiRes.reply.includes("I couldn't find a laptop");
+    const casePassed = intentOk && searchOk && noCatalogLeak;
 
-    if (!intentOk || !searchOk || !noCatalogLeak) {
+    if (!casePassed) {
       allPassed = false;
     }
 
-    console.log(`INPUT:               "${tc.text}"`);
-    console.log(`DETECTED INTENT:     ${intentRes.intent} (Expected: ${tc.expectedIntent}) -> ${intentOk ? '✅ MATCH' : '❌ MISMATCH'}`);
-    console.log(`SEARCH ALLOWED:      ${intentRes.searchAllowed} (Expected: ${tc.shouldSearch}) -> ${searchOk ? '✅ MATCH' : '❌ MISMATCH'}`);
-    console.log(`CATALOG LEAK CHECK:  ${noCatalogLeak ? '✅ CLEAN (No catalog error leak)' : '❌ LEAK DETECTED'}`);
-    console.log(`ASSISTANT REPLY:     "${aiRes.reply}"`);
-    console.log(`RESPONSE SOURCE:     ${aiRes.responseSource}`);
-    console.log('----------------------------------------------------\n');
+    results.push({
+      caseNumber: i + 1,
+      input: tc.text,
+      expectedIntent: tc.expectedIntent,
+      detectedIntent: intentRes.intent,
+      intentOk,
+      expectedSearch: tc.shouldSearch,
+      actualSearch: intentRes.searchAllowed,
+      searchOk,
+      noCatalogLeak,
+      reply: aiRes.reply,
+      responseSource: aiRes.responseSource,
+      casePassed
+    });
   }
 
-  console.log(`OVERALL STATUS: ${allPassed ? '✅ ALL 9 CASES VERIFIED SUCCESSFULLY' : '❌ VERIFICATION FAILED'}\n`);
-  if (!allPassed) process.exit(1);
+  // Print crisp structured summary for each of the 9 test cases
+  for (const r of results) {
+    const statusIcon = r.casePassed ? '✅ PASS' : '❌ FAIL';
+    console.log(`CASE ${r.caseNumber}: "${r.input}" [${statusIcon}]`);
+    console.log(`  • Intent:           ${r.detectedIntent} (Expected: ${r.expectedIntent}) -> ${r.intentOk ? '✅ MATCH' : '❌ FAIL'}`);
+    console.log(`  • Search Allowed:   ${r.actualSearch} (Expected: ${r.expectedSearch}) -> ${r.searchOk ? '✅ MATCH' : '❌ FAIL'}`);
+    console.log(`  • No Catalog Leak:  ${r.noCatalogLeak ? '✅ CLEAN' : '❌ LEAKED ERROR'}`);
+    console.log(`  • Source Tag:       ${r.responseSource}`);
+    console.log(`  • Reply Text:       "${r.reply.replace(/\n/g, ' ')}"`);
+    console.log('------------------------------------------------------------------------');
+  }
+
+  console.log(`\nOVERALL VERIFICATION RESULT: ${allPassed ? '✅ 9/9 TEST CASES PASSED (100% GREEN)' : '❌ TEST FAILURES DETECTED'}`);
+  console.log('========================================================================\n');
+
+  process.exitCode = allPassed ? 0 : 1;
 }
 
 run();
