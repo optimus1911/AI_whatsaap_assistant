@@ -181,28 +181,28 @@ export default function ChatArea() {
                   className={`flex ${isCustomer ? 'justify-start' : 'justify-end'} w-full animate-slide-in`}
                 >
                   <div
-                    className={`relative max-w-[85%] sm:max-w-[70%] md:max-w-[65%] rounded-2xl px-4 py-2.5 shadow-md text-xs sm:text-sm ${
+                    className={`relative max-w-[85%] sm:max-w-[70%] md:max-w-[65%] rounded-lg px-3.5 py-2 shadow text-xs sm:text-sm ${
                       isCustomer
-                        ? 'bg-whatsapp-panel text-whatsapp-text border border-whatsapp-border/40 rounded-tl-sm'
-                        : 'bg-gradient-to-br from-whatsapp-outgoing to-[#004d3e] text-white border border-whatsapp-green/20 rounded-tr-sm'
+                        ? 'bg-whatsapp-panel text-whatsapp-text border border-whatsapp-border/30 rounded-tl-none'
+                        : 'bg-whatsapp-outgoing text-white border border-whatsapp-green/20 rounded-tr-none'
                     }`}
                   >
                     {/* Header tag: Customer vs AI Assistant */}
-                    <div className="flex items-center justify-between gap-3 mb-1 pb-0.5 border-b border-white/5">
-                      <span className={`text-[10px] font-extrabold uppercase tracking-wider ${
-                        isCustomer ? 'text-whatsapp-gray' : 'text-whatsapp-green flex items-center gap-1'
+                    <div className="flex items-center justify-between gap-3 mb-1 pb-0.5 border-b border-white/10">
+                      <span className={`text-[10px] font-semibold uppercase tracking-wider ${
+                        isCustomer ? 'text-whatsapp-gray' : 'text-whatsapp-green'
                       }`}>
-                        {isCustomer ? (customer.name || 'Customer') : '🤖 AI WhatsApp Assistant'}
+                        {isCustomer ? (customer.name || 'Customer') : 'AI WhatsApp Assistant'}
                       </span>
                     </div>
 
                     {/* Message body */}
-                    <p className="pr-12 break-words leading-relaxed font-sans text-whatsapp-text">
+                    <p className="pr-10 break-words leading-relaxed font-sans text-whatsapp-text whitespace-pre-wrap">
                       {msg.message}
                     </p>
                     
                     {/* Timestamp and Read Receipts */}
-                    <div className="flex items-center justify-end space-x-1 text-[10px] text-whatsapp-gray/70 pt-1 select-none">
+                    <div className="flex items-center justify-end space-x-1 text-[10px] text-whatsapp-gray pt-1 select-none">
                       <span className="font-mono">{formatTime(msg.timestamp || msg.createdAt)}</span>
                       {!isCustomer && (
                         msg.status === 'read' ? (
@@ -221,26 +221,25 @@ export default function ChatArea() {
           ) : (
             <div className="flex flex-col items-center justify-center h-48 text-whatsapp-gray text-xs select-none">
               <p>No messages recorded for this conversation yet.</p>
-              <p className="text-[10px] text-whatsapp-gray/60 mt-1">Send a test message below to trigger Gemini AI analysis.</p>
+              <p className="text-[10px] text-whatsapp-gray/70 mt-1">Send a message below to test live assistant response.</p>
             </div>
           )}
 
-          {/* AI Thinking Animation with 5 stages */}
+          {/* AI Thinking Indicator */}
           {isThinking && (
-            <div className="flex justify-end w-full select-none animate-slide-in">
-              <div className="bg-gradient-to-br from-whatsapp-panel to-whatsapp-input text-white rounded-2xl rounded-tr-sm px-4 py-3 shadow-lg max-w-[70%] flex flex-col gap-2 border border-whatsapp-green/30">
+            <div className="flex justify-end w-full select-none">
+              <div className="bg-whatsapp-panel text-white rounded-lg rounded-tr-none px-3.5 py-2.5 shadow max-w-[70%] flex flex-col gap-1.5 border border-whatsapp-border/30">
                 <div className="flex items-center gap-2">
-                  {/* Bouncing dots */}
                   <div className="flex space-x-1 items-center h-3">
                     <div className="w-1.5 h-1.5 bg-whatsapp-green rounded-full animate-bounce" style={{ animationDelay: "0ms" }}></div>
                     <div className="w-1.5 h-1.5 bg-whatsapp-green rounded-full animate-bounce" style={{ animationDelay: "150ms" }}></div>
                     <div className="w-1.5 h-1.5 bg-whatsapp-green rounded-full animate-bounce" style={{ animationDelay: "300ms" }}></div>
                   </div>
-                  <span className="text-[10px] text-whatsapp-green font-extrabold uppercase tracking-wider font-mono">
-                    AI Assistant Intelligence
+                  <span className="text-[10px] text-whatsapp-green font-medium uppercase tracking-wider font-mono">
+                    AI Assistant
                   </span>
                 </div>
-                <span className="text-xs text-whatsapp-text font-medium transition-all duration-300">
+                <span className="text-xs text-whatsapp-gray">
                   {stages[thinkingStage]}
                 </span>
               </div>

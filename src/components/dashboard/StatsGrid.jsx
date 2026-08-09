@@ -3,9 +3,7 @@ import {
   IoPeopleOutline, 
   IoChatbubblesOutline, 
   IoFlameOutline, 
-  IoAnalyticsOutline, 
-  IoCashOutline, 
-  IoHappyOutline 
+  IoAnalyticsOutline
 } from "react-icons/io5";
 import DashboardCard from "./DashboardCard";
 
@@ -14,73 +12,45 @@ export default function StatsGrid({ stats = {} }) {
   const totalMessages = stats.totalMessages ?? 0;
   const hotLeads = stats.hotLeads ?? 0;
   const avgLeadScore = stats.averageLeadScore ?? 0;
-  const avgPurchaseProb = stats.averagePurchaseProbability ?? 0;
-  const positiveSentiment = stats.positiveSentiment ?? 0;
   const todayMessages = stats.todayMessages ?? 0;
-
-  const sentimentRatio = totalCustomers > 0 
-    ? Math.round((positiveSentiment / totalCustomers) * 100) 
-    : 0;
 
   const cards = [
     {
-      title: "Total Customers",
-      value: totalCustomers,
+      title: "Customers",
+      value: totalCustomers.toLocaleString(),
       icon: IoPeopleOutline,
-      trend: "+12 Active",
+      trend: "Active",
       trendType: "positive",
-      subtext: "Synced via WhatsApp CRM",
-      accentColor: "teal"
+      subtext: "Synced via WhatsApp CRM"
     },
     {
-      title: "Total Messages",
-      value: totalMessages,
+      title: "Messages",
+      value: totalMessages.toLocaleString(),
       icon: IoChatbubblesOutline,
       trend: todayMessages > 0 ? `+${todayMessages} today` : "Live feed",
       trendType: "positive",
-      subtext: "Processed by AI engine",
-      accentColor: "blue"
+      subtext: "Processed by assistant"
     },
     {
       title: "Hot Leads",
-      value: hotLeads,
+      value: hotLeads.toLocaleString(),
       icon: IoFlameOutline,
-      trend: hotLeads > 0 ? "🔥 Urgent Action" : "0 Pending",
+      trend: hotLeads > 0 ? "Urgent" : "0 Pending",
       trendType: hotLeads > 0 ? "hot" : "neutral",
-      subtext: "High buying readiness",
-      accentColor: "red"
+      subtext: "High purchase readiness"
     },
     {
-      title: "Avg Lead Score",
-      value: `${avgLeadScore}/100`,
+      title: "Average Lead Score",
+      value: `${avgLeadScore} / 100`,
       icon: IoAnalyticsOutline,
-      trend: avgLeadScore >= 70 ? "High Quality" : "Moderate",
+      trend: avgLeadScore >= 70 ? "High" : "Standard",
       trendType: avgLeadScore >= 70 ? "positive" : "neutral",
-      subtext: "Dynamic AI evaluation",
-      accentColor: "purple"
-    },
-    {
-      title: "Purchase Prob.",
-      value: `${avgPurchaseProb}%`,
-      icon: IoCashOutline,
-      trend: avgPurchaseProb >= 50 ? "Strong Pipeline" : "Standard",
-      trendType: avgPurchaseProb >= 50 ? "positive" : "neutral",
-      subtext: "Predicted deal closure",
-      accentColor: "teal"
-    },
-    {
-      title: "Positive Sentiment",
-      value: positiveSentiment,
-      icon: IoHappyOutline,
-      trend: `${sentimentRatio}% overall`,
-      trendType: "positive",
-      subtext: `${positiveSentiment} happy customer dialogues`,
-      accentColor: "amber"
+      subtext: "Conversation evaluation"
     }
   ];
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-3.5 sm:gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {cards.map((card, idx) => (
         <DashboardCard
           key={idx}
@@ -90,7 +60,6 @@ export default function StatsGrid({ stats = {} }) {
           trend={card.trend}
           trendType={card.trendType}
           subtext={card.subtext}
-          accentColor={card.accentColor}
         />
       ))}
     </div>
