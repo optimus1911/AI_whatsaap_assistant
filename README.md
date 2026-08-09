@@ -38,7 +38,7 @@ By automating repetitive customer interactions, AI WhatsApp Assistant helps busi
 
 # 🔗 Live Demo
 
-**Live Application:** [Add your live demo link here]
+**Live Application:** https://wa.me/918871394934
 
 ---
 
