@@ -119,10 +119,10 @@ By automating repetitive customer interactions, AI WhatsApp Assistant helps busi
 
 | Name                | Role                    |
 | ------------------- | ----------------------- |
-| **[Member 1 Name]** | [Role / Responsibility] |
-| **[Member 2 Name]** | [Role / Responsibility] |
-| **[Member 3 Name]** | [Role / Responsibility] |
-| **[Member 4 Name]** | [Role / Responsibility] |
+| **Aman Raghuwanshi** | AI & RAG Implementation (Team Leader)|
+| **Yuvraj Raghuwanshi** | Frontend & Documentation |
+| **Piyush Raghuwanshi** | Backend & Solution Architecture |
+| **Devrath Raghuwanshi** | Database & Integrations |
 
 ---
 
